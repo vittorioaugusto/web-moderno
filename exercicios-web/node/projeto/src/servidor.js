@@ -7,36 +7,36 @@ const bancoDeDados = require('./bancoDeDados')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.get('/produtos', (req, res, next) => {
+app.get('/produtos', function (req, res, next) {
     res.send(bancoDeDados.getProdutos())
 })
 
-app.get('/produtos/:id', (req, res, next) => {
+app.get('/produtos/:id', function (req, res, next) {
     res.send(bancoDeDados.getProduto(req.params.id))
 })
 
-app.post('/produtos', (req, res, next) => {
+app.post('/produtos', function (req, res, next) {
     const produto = bancoDeDados.salvarProduto({
         nome: req.body.nome,
         preco: req.body.preco
     })
-    res.send(produto) // JSON
+    res.send(produto)
 })
 
-app.put('/produtos/:id', (req, res, next) => {
+app.put('/produtos/:id', function (req, res, next) {
     const produto = bancoDeDados.salvarProduto({
         id: req.params.id,
         nome: req.body.nome,
         preco: req.body.preco
     })
-    res.send(produto) // JSON
+    res.send(produto)
 })
 
-app.delete('/produtos/:id', (req, res, next) => {
+app.delete('/produtos/:id', function (req, res, next) {
     const produto = bancoDeDados.excluirProduto(req.params.id)
-    res.send(produto) // JSON
+    res.send(produto)
 })
 
-app.listen(porta, () => {
-    console.log(`Servidor está executando na porta ${porta}.`)
+app.listen(porta, function () {
+    console.log(`Servidor está executando na porta ${porta}`)
 })
